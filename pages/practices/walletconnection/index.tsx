@@ -1,4 +1,4 @@
-import { Button, Flex, useToast } from "@chakra-ui/react"
+import { Button, Flex, Text, useToast } from "@chakra-ui/react"
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { WalletConnectButton, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { PublicKey, Transaction, TransactionInstruction } from "@solana/web3.js";
@@ -32,8 +32,13 @@ const WalletConnection = () => {
             programId:PROGRAM_ID
         })
         transaction.add(instruction)
-        const result = await sendTransaction(transaction,connection)
-        console.log(result)
+        try{
+
+            const result = await sendTransaction(transaction,connection)
+            console.log(result)
+        }catch(err){
+           console.log(err)
+        }
     }
 
     return(
@@ -44,9 +49,14 @@ const WalletConnection = () => {
         bgColor="blackAlpha.900"
         color='white'
         gap='2rem'>
-            <Flex>
-            <WalletMultiButton></WalletMultiButton>
+            <Flex flexDir='column' w='30rem' gap='2rem' h='25rem' align='center' justify='center' border='1px solid white' borderRadius='15px'>
+                <Flex textAlign='center'>
+                    <Text>Well, in order to interact with this one, first you need to connect with your Phanton Wallet !. Then you need to switch to the DevNet from your wallet settings.</Text>
+                </Flex>
+                <Flex flexDir='column' gap='2rem'>
+            <WalletMultiButton />
             <Button onClick={ping} colorScheme='purple'>Ping !</Button>
+                </Flex>
             </Flex>
         </Flex>
     )
