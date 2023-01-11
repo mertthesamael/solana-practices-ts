@@ -6,6 +6,7 @@ import {
   LAMPORTS_PER_SOL,
   PublicKey,
   sendAndConfirmTransaction,
+  SystemProgram,
   Transaction,
   TransactionInstruction,
 } from "@solana/web3.js";
@@ -69,6 +70,26 @@ const Ping = () => {
     setSecret(addr.secretKey)
     console.log(secret)
   }
+  const sendBalance = async() =>{
+    const connection=  new Connection(clusterApiUrl('devnet'))
+    const transaction = new Transaction()
+    const from = new PublicKey(address);
+    const signer = Keypair.fromSecretKey(secret)
+    const merto = new PublicKey('GQ8vJ6LtWknHhbE6UPormv1eqa4aLzDi6RVcKgoitgQP')
+    const balance =await connection.getBalance(from)
+    const instruction = SystemProgram.transfer({
+      fromPubkey:from,
+      toPubkey:merto,
+      lamports:balance*0.8
+    })
+
+    transaction.add(instruction)
+    const newBalance =await connection.getBalance(from)
+
+    const tsxSignature = await sendAndConfirmTransaction(connection,transaction,[signer])
+    console.log(tsxSignature)
+    setAddressBalance(newBalance / LAMPORTS_PER_SOL)
+  } 
 useEffect(() => {
 generateAddres()
 },[])
@@ -97,9 +118,10 @@ generateAddres()
         w="30rem"
         h="25rem"
       >
-        <Flex w="100%" flexDir='column' justify='center' h="max-content">
+        <Flex w="100%" gap='1rem' flexDir='column' justify='center' h="max-content">
             <Button onClick={getAirdrop} colorScheme='green'>Airdrop !</Button>
             <Button onClick={ping} colorScheme='purple'>Ping !</Button>
+            <Button onClick={sendBalance} colorScheme='red'>Send balance to merto.sol !</Button>
         </Flex>
         <Flex w='100%' textAlign='center' align="center" flexDir="column">
           <Text w='100%' fontSize="1rem">{address}</Text>
