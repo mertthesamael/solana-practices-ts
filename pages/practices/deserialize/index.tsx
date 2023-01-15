@@ -7,7 +7,7 @@ import { Movie } from "../../../models/Movie"
 
 
 
-const deserialize = () => {
+const Deserialize = () => {
     const [movies, setMovies] = useState<Movie[]>([])
     const {connection} = useConnection()
     const {publicKey, sendTransaction} = useWallet()
@@ -42,4 +42,4 @@ const deserialize = () => {
 }
 
 
-export default deserialize;
+export default Deserialize;
