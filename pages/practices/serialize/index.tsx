@@ -64,7 +64,7 @@ const Serialize = () => {
             toast({
                 status:'success',
                 title:'Review submitted !',
-                description:<a href={`https://explorer.solana.com/tx/${result}?cluster=devnet`} target='_blank'>Click here to see details</a>
+                description:<a rel="noreferrer" href={`https://explorer.solana.com/tx/${result}?cluster=devnet`} target='_blank'>Click here to see details</a>
             })
             console.log(result)
         }catch(err:any){
@@ -84,7 +84,7 @@ const Serialize = () => {
                 </Flex>
                 <Flex textAlign='center'>
                     <Text>
-                        In this series, i worked about seralising data and sending it. I've done it with like "Movie Review" system. You can enter the movie name and your review, after that you can rate it like 5 or 2 or 1 idk.
+                        In this series, i worked about seralising data and sending it. I&apos;ve done it with like &apos;Movie Review&apos;system. You can enter the movie name and your review, after that you can rate it like 5 or 2 or 1 idk.
                     </Text>
                 </Flex>
                 <Flex w='100%'>

@@ -19,7 +19,7 @@ const NftMint = () => {
                 <WalletMultiButtonDynamic></WalletMultiButtonDynamic>
             </Box>
                 <Flex maxH='70%' overflow='auto' justify='center' flexWrap='wrap' gap='5rem'>
-                    {TEST_IMG.map(img=><Flex h='20rem'>
+                    {TEST_IMG.map(img=><Flex key={img} h='20rem'>
                         <Image h='100%' src={img}></Image>
                     </Flex>)}
                
