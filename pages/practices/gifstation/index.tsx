@@ -38,7 +38,7 @@ const GifStation = () => {
                     <Flex   h='100%'flexWrap='wrap' justify='center' gap='8rem'>
 
                     {TEST_GIFS.map((x)=>
-                    <Flex w='20rem' h='20rem'>
+                    <Flex key={x} w='20rem' h='20rem'>
                     <Image  src={x} ></Image>
                     </Flex>
                     
