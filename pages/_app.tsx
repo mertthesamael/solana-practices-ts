@@ -5,7 +5,13 @@ import {ConnectionProvider, WalletContext, WalletProvider} from '@solana/wallet-
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom'
 import { WalletModal, WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { clusterApiUrl } from '@solana/web3.js'
+import dynamic from 'next/dynamic';
 
+// add this
+const WalletMultiButtonDynamic = dynamic(
+    async () => (await import('@solana/wallet-adapter-react-ui')).WalletMultiButton,
+    { ssr: false }
+);
 import WalletContextProvider from '../components/WalletContextProvider'
 export default function App({ Component, pageProps }: AppProps) {
   const endpoint = clusterApiUrl('devnet')

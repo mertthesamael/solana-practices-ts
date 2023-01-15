@@ -11,7 +11,7 @@ const WalletContextProvider: FC<{ children:any }> = ({ children }) => {
   const wallets:any = new walletAdapterWallets.PhantomWalletAdapter()
 
 	return (
-		<ConnectionProvider endpoint={endpoint}>
+	<ConnectionProvider endpoint={endpoint}>
 	    <WalletProvider wallets={[wallets]}>
 	      <WalletModalProvider>
 	        { children }
